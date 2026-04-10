@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jane Street Procurement Timeline</title>
+    <meta
+      name="description"
+      content="Recommended procurement order windows, shipping timing, and payment schedule for the Jane Street 11th Floor project."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Procurement Timeline</p>
+          <h1>Jane Street 11th Floor</h1>
+          <p class="intro">
+            Recommended order windows, expected ship and invoice dates, and
+            estimated Net 30 and Net 45 payment timing for the full procurement
+            package.
+          </p>
+        </div>
+
+        <div class="hero-metrics">
+          <article class="metric-card">
+            <span class="metric-label">Due date</span>
+            <strong class="metric-value">Jul 10, 2026</strong>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">Total value</span>
+            <strong class="metric-value" id="total-value">$0.00</strong>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">Buy now items</span>
+            <strong class="metric-value" id="buy-now-count">0</strong>
+          </article>
+          <article class="metric-card">
+            <span class="metric-label">High-risk exposure</span>
+            <strong class="metric-value" id="high-risk-total">$0.00</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="summary-grid">
+        <article class="summary-panel">
+          <p class="summary-label">Target on site</p>
+          <h2>Jun 19 - Jun 26</h2>
+          <p class="summary-copy">
+            Material should be in-house 2 to 3 weeks before the project due
+            date to protect the installation window.
+          </p>
+        </article>
+        <article class="summary-panel">
+          <p class="summary-label">Main schedule driver</p>
+          <h2>CW Coil</h2>
+          <p class="summary-copy">
+            The coil carries the longest lead time and the largest single line
+            value, so it controls the buying sequence.
+          </p>
+        </article>
+        <article class="summary-panel">
+          <p class="summary-label">Cash flow logic</p>
+          <h2>Ship = Invoice</h2>
+          <p class="summary-copy">
+            Payment windows assume invoice timing aligns to shipment and are
+            shown for both Net 30 and Net 45 terms.
+          </p>
+        </article>
+      </section>
+
+      <section class="table-panel">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Line-by-line schedule</p>
+            <h2>Procurement detail</h2>
+          </div>
+          <p class="section-note">
+            Priorities and risk markers are embedded directly beside each
+            component for quick review.
+          </p>
+        </div>
+
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Vendor</th>
+                <th class="align-right">Amount</th>
+                <th>Lead Time</th>
+                <th>Recommended Order</th>
+                <th>Expected Ship / Invoice</th>
+                <th>Net 30</th>
+                <th>Net 45</th>
+              </tr>
+            </thead>
+            <tbody id="timeline-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="bottom-grid">
+        <article class="release-panel">
+          <div class="section-heading compact">
+            <div>
+              <p class="section-kicker">Recommended sequence</p>
+              <h2>Release plan</h2>
+            </div>
+          </div>
+
+          <div class="release-grid">
+            <section class="release-card release-card-now">
+              <p>Buy now</p>
+              <ul id="release-now"></ul>
+            </section>
+            <section class="release-card release-card-may">
+              <p>Order in May</p>
+              <ul id="release-may"></ul>
+            </section>
+            <section class="release-card release-card-june">
+              <p>Order in June</p>
+              <ul id="release-june"></ul>
+            </section>
+          </div>
+        </article>
+
+        <aside class="notes-panel">
+          <p class="section-kicker">Planning notes</p>
+          <h2>What to watch</h2>
+          <ul class="notes-list">
+            <li>Release the CW coil immediately to avoid compressing fabrication.</li>
+            <li>Fans and filters can travel with the first purchase wave.</li>
+            <li>Dampers fit a May buy window without stressing the July deadline.</li>
+            <li>Short-lead accessories can be held until June to smooth cash flow.</li>
+          </ul>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
