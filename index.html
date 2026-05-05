@@ -6,7 +6,7 @@
     <title>Jane Street Procurement Timeline</title>
     <meta
       name="description"
-      content="Recommended procurement order windows, shipping timing, and payment schedule for the Jane Street 11th Floor project."
+      content="Live procurement tracking for the Jane Street 11th Floor project, including ordered dates, PO due dates, and expected invoice timing."
     />
     <link rel="stylesheet" href="./styles.css" />
   </head>
@@ -17,68 +17,80 @@
           <p class="eyebrow">Procurement Timeline</p>
           <h1>Jane Street 11th Floor</h1>
           <p class="intro">
-            Recommended order windows, expected ship and invoice dates, and
-            estimated Net 30 and Net 45 payment timing for the full procurement
-            package.
+            This page now tracks planned purchasing, actual order placement, PO
+            due dates, and invoice timing so the shared project team can stay
+            current as buyouts are released.
           </p>
         </div>
 
         <div class="hero-metrics">
           <article class="metric-card">
-            <span class="metric-label">Due date</span>
-            <strong class="metric-value">Jul 10, 2026</strong>
+            <span class="metric-label">Project due date</span>
+            <strong class="metric-value" id="due-date">-</strong>
           </article>
           <article class="metric-card">
-            <span class="metric-label">Total value</span>
-            <strong class="metric-value" id="total-value">$0.00</strong>
+            <span class="metric-label">Planned value</span>
+            <strong class="metric-value" id="total-planned-value">$0.00</strong>
           </article>
           <article class="metric-card">
-            <span class="metric-label">Buy now items</span>
-            <strong class="metric-value" id="buy-now-count">0</strong>
+            <span class="metric-label">Ordered to date</span>
+            <strong class="metric-value" id="ordered-total">$0.00</strong>
           </article>
           <article class="metric-card">
-            <span class="metric-label">High-risk exposure</span>
-            <strong class="metric-value" id="high-risk-total">$0.00</strong>
+            <span class="metric-label">Remaining to place</span>
+            <strong class="metric-value" id="remaining-total">$0.00</strong>
           </article>
         </div>
       </section>
 
       <section class="summary-grid">
         <article class="summary-panel">
-          <p class="summary-label">Target on site</p>
-          <h2>Jun 19 - Jun 26</h2>
+          <p class="summary-label">Orders placed</p>
+          <h2 id="ordered-count">0</h2>
           <p class="summary-copy">
-            Material should be in-house 2 to 3 weeks before the project due
-            date to protect the installation window.
+            Components move into this count once an ordered date is entered.
           </p>
         </article>
         <article class="summary-panel">
-          <p class="summary-label">Main schedule driver</p>
-          <h2>CW Coil</h2>
+          <p class="summary-label">Ready now</p>
+          <h2 id="ready-now-count">0</h2>
           <p class="summary-copy">
-            The coil carries the longest lead time and the largest single line
-            value, so it controls the buying sequence.
+            High-priority components still open and ready for immediate release.
           </p>
         </article>
         <article class="summary-panel">
-          <p class="summary-label">Cash flow logic</p>
-          <h2>Ship = Invoice</h2>
+          <p class="summary-label">Awaiting PO due dates</p>
+          <h2 id="missing-po-dates-count">0</h2>
           <p class="summary-copy">
-            Payment windows assume invoice timing aligns to shipment and are
-            shown for both Net 30 and Net 45 terms.
+            Invoice timing will populate once each component has a PO due date.
           </p>
         </article>
+      </section>
+
+      <section class="live-panel">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">Live order status</p>
+            <h2>Major component updates</h2>
+          </div>
+          <p class="section-note">
+            Expected invoice dates, Net 30, and Net 45 timing all follow the PO
+            due date entered for each component.
+          </p>
+        </div>
+
+        <div class="update-grid" id="major-updates"></div>
       </section>
 
       <section class="table-panel">
         <div class="section-heading">
           <div>
-            <p class="section-kicker">Line-by-line schedule</p>
-            <h2>Procurement detail</h2>
+            <p class="section-kicker">PO tracking detail</p>
+            <h2>Order and invoicing log</h2>
           </div>
           <p class="section-note">
-            Priorities and risk markers are embedded directly beside each
-            component for quick review.
+            This table is meant to be refreshed whenever a PO is issued or the
+            due date changes.
           </p>
         </div>
 
@@ -88,10 +100,13 @@
               <tr>
                 <th>Component</th>
                 <th>Vendor</th>
-                <th class="align-right">Amount</th>
+                <th class="align-right">Planned Value</th>
                 <th>Lead Time</th>
                 <th>Recommended Order</th>
-                <th>Expected Ship / Invoice</th>
+                <th>Ordered On</th>
+                <th class="align-right">PO Amount</th>
+                <th>PO Due Date</th>
+                <th>Expected Invoice</th>
                 <th>Net 30</th>
                 <th>Net 45</th>
               </tr>
@@ -105,36 +120,48 @@
         <article class="release-panel">
           <div class="section-heading compact">
             <div>
-              <p class="section-kicker">Recommended sequence</p>
-              <h2>Release plan</h2>
+              <p class="section-kicker">Action buckets</p>
+              <h2>Current buying picture</h2>
             </div>
           </div>
 
-          <div class="release-grid">
+          <div class="release-grid release-grid-quad">
+            <section class="release-card release-card-ordered">
+              <p>Ordered</p>
+              <ul id="bucket-ordered"></ul>
+            </section>
             <section class="release-card release-card-now">
-              <p>Buy now</p>
-              <ul id="release-now"></ul>
+              <p>Ready to place</p>
+              <ul id="bucket-open"></ul>
             </section>
             <section class="release-card release-card-may">
-              <p>Order in May</p>
-              <ul id="release-may"></ul>
+              <p>Scheduled for May</p>
+              <ul id="bucket-may"></ul>
             </section>
             <section class="release-card release-card-june">
-              <p>Order in June</p>
-              <ul id="release-june"></ul>
+              <p>Scheduled for June</p>
+              <ul id="bucket-june"></ul>
             </section>
           </div>
         </article>
 
         <aside class="notes-panel">
-          <p class="section-kicker">Planning notes</p>
-          <h2>What to watch</h2>
+          <p class="section-kicker">Update guide</p>
+          <h2>How this page stays current</h2>
           <ul class="notes-list">
-            <li>Release the CW coil immediately to avoid compressing fabrication.</li>
-            <li>Fans and filters can travel with the first purchase wave.</li>
-            <li>Dampers fit a May buy window without stressing the July deadline.</li>
-            <li>Short-lead accessories can be held until June to smooth cash flow.</li>
+            <li>Enter an ordered date when a PO is issued and the status flips to Ordered.</li>
+            <li>Add the actual PO amount so the ordered total reflects real purchasing.</li>
+            <li>Enter the PO due date to populate expected invoice, Net 30, and Net 45.</li>
+            <li>Leave future items blank until they are released so viewers can distinguish plan from actual buyout activity.</li>
           </ul>
+          <div class="notes-meta">
+            <span>Next invoice</span>
+            <strong id="next-invoice">Awaiting PO dates</strong>
+          </div>
+          <div class="notes-meta">
+            <span>Last updated</span>
+            <strong id="last-updated">-</strong>
+          </div>
         </aside>
       </section>
     </main>
